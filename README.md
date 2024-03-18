@@ -1,74 +1,47 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# Idle Web Dev
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es un juego clicker-idle donde los jugadores asumen el papel de un programador que crea diferentes sitios web utilizando HTML y CSS. El objetivo del juego es generar "LC" (líneas de código), que es la moneda del juego, para avanzar y desbloquear nuevas funcionalidades.
 
-## Available Scripts
+## Características del Juego
 
-In the project directory, you can run:
+- **Programación de sitios web**: Comienza creando sitios web simples usando HTML y CSS.
+- **Generación automática de LC**: Desbloquea actualizaciones pasivas que generan LC automáticamente con el tiempo.
+- **Mejoras**: Mejora tus habilidades de programación adquiriendo actualizaciones que aumentan la velocidad de generación de LC.
+- **Estilo Visual**: Añade estilo y personalización a tus sitios web con actualizaciones de CSS.
 
-### `npm start`
+## Cómo Jugar
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Haz clic en el botón "Programar web" para generar LC manualmente.
+2. Utiliza LC para comprar actualizaciones pasivas y activas que te ayudarán a generar LC más rápido.
+3. Observa cómo crece tu cantidad de LC y desbloquea nuevas funcionalidades.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalación y Ejecución
 
-### `npm test`
+Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clona este repositorio en tu máquina local:
 
-### `npm run build`
+   ```bash
+ git clone https://github.com/TuUsuario/IdleWebDev.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Navega hasta el directorio del proyecto:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+bash
+Copy code
+cd IdleWebDev
+Abre el archivo index.html en tu navegador web:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+bash
+Copy code
+# Dependiendo del sistema operativo
+start index.html   # Windows
+open index.html    # macOS
+xdg-open index.html   # Linux
+Capturas de Pantalla
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Contribuciones
+Las contribuciones son bienvenidas. Si tienes alguna idea para mejorar este proyecto, no dudes en abrir un issue o enviar un pull request.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# IdleDevWeb
->>>>>>> 07776b893f2f43047a1b82d63d2487d273fa16a5
+Licencia
+Este proyecto está bajo la licencia MIT.

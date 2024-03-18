@@ -22,7 +22,7 @@ Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
 1. Clona este repositorio en tu máquina local:
 
    ```bash
- git clone https://github.com/TuUsuario/IdleWebDev.git
+ git clone https://github.com/TuUsuario/IdleWebDev.git ```
 
 Navega hasta el directorio del proyecto:
 

@@ -21,18 +21,12 @@ Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
 
 1. Clona este repositorio en tu máquina local:
 
-   ```bash
- git clone https://github.com/TuUsuario/IdleWebDev.git ```
+ git clone https://github.com/TuUsuario/IdleWebDev.git
 
 Navega hasta el directorio del proyecto:
-
-bash
-Copy code
 cd IdleWebDev
 Abre el archivo index.html en tu navegador web:
 
-bash
-Copy code
 # Dependiendo del sistema operativo
 start index.html   # Windows
 open index.html    # macOS
@@ -40,8 +34,4 @@ xdg-open index.html   # Linux
 Capturas de Pantalla
 
 
-Contribuciones
-Las contribuciones son bienvenidas. Si tienes alguna idea para mejorar este proyecto, no dudes en abrir un issue o enviar un pull request.
 
-Licencia
-Este proyecto está bajo la licencia MIT.

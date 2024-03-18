@@ -6,7 +6,7 @@ function App() {
   const [lc, setLC] = useState(0);
   const [htmlUpgradeLevel, setHtmlUpgradeLevel] = useState(0);
   const [cssUpgradeLevel, setCssUpgradeLevel] = useState(0);
-  const [tickInterval, setTickInterval] = useState(5000);
+  const [lcGeneration, setLcGeneration] = useState(0);
 
   const handleProgramHTML = () => {
     setLC(prevLC => prevLC + 10);
@@ -34,36 +34,33 @@ function App() {
     }
   };
   const startHtmlAutoGeneration = () => {
+    let interval = 5000;
+    let lcGenerated = 5 * Math.pow(2, htmlUpgradeLevel);
+
+    addLcGeneration(lcGenerated, interval);
     setInterval(() => {
-      setLC(prevLC => prevLC + 5 * Math.pow(2, htmlUpgradeLevel));
-    }, tickInterval);
+      setLC(prevLC => prevLC + lcGenerated);
+    }, interval);
   };
   
   const startCssAutoGeneration = () => {
+    let interval = 5000;
+    let lcGenerated = 8 * Math.pow(2, cssUpgradeLevel);
+
+    addLcGeneration(lcGenerated, interval);
     setInterval(() => {
-      setLC(prevLC => prevLC + 8 * Math.pow(2, cssUpgradeLevel));
-    }, tickInterval);
+      setLC(prevLC => prevLC + lcGenerated);
+    }, interval);
   };
 
-  const calculateLcGeneration = () => {
-
-    let htmlGeneration = 0;
-    let cssGeneration = 0;
-
-    if (htmlUpgradeLevel > 0) {
-        htmlGeneration = 5 * Math.pow(2, htmlUpgradeLevel-1);
-    }
-
-    if (cssUpgradeLevel > 0) {
-      cssGeneration = 8 * Math.pow(2, cssUpgradeLevel-1);
-    }
-
-    return (htmlGeneration + cssGeneration) / (tickInterval / 1000);
+  const addLcGeneration = (lc, ms) => {
+    setLcGeneration(prevLcGeneration => prevLcGeneration + lc / (ms / 1000));
   }
+
 
   return (
     <div className="container">
-      <Stats lc={lc} lcGeneration={calculateLcGeneration()}/>
+      <Stats lc={lc} lcGeneration={lcGeneration}/>
       <Button onClick={handleProgramHTML}>Programar web</Button>
       <div className="upgrade">
         <Button onClick={handleHtmlUpgrade}>Upgrade HTML ({100 * Math.pow(2, htmlUpgradeLevel)} LC)</Button>

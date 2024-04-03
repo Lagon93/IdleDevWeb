@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 class LC {
     lc;
     lcGeneration;
     subscribers;
 
-    constructor(callback) {
+    constructor() {
         this.lc = 0;
         this.lcGeneration = 0;
         this.subscribers = [];

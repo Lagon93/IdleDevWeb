@@ -1,0 +1,75 @@
+{
+  "technology": [
+    {
+      "id": "HTML",
+      "price": "50",
+      "lcGeneration": "1",
+      "growth": "1.15",
+      "upgrades": ["HTML", "HTML 2.0", "HTML 3.2", "HTML 4.01", "HTML5"]
+    },
+    {
+      "id": "CSS",
+      "price": "100",
+      "lcGeneration": "10",
+      "growth": "1.15",
+      "upgrades": ["CSS", "CSS2", "CSS3", "Sass", "Less"]
+    },
+    {
+      "id": "Frontend",
+      "price": "200",
+      "lcGeneration": "100",
+      "growth": "1.15",
+      "upgrades": [
+        "JavaScript",
+        "React.js v0.3",
+        "React.js v0.4",
+        "React.js v0.5",
+        "React.js v0.6",
+        "React.js v0.7",
+        "React.js v0.8",
+        "React.js v0.9",
+        "React.js v0.10",
+        "React.js v0.11",
+        "React.js v0.12",
+        "React.js v0.13",
+        "React.js v0.14",
+        "React.js v15.0",
+        "React.js v16.0",
+        "React.js v16.14.0",
+        "Angular v1.0",
+        "Angular v2.0",
+        "Angular v4.0",
+        "Angular v6.0",
+        "Angular v8.0",
+        "Vue.js v1.0",
+        "Vue.js v2.0",
+        "Vue.js v3.0.0",
+        "TypeScript v1.0",
+        "TypeScript v2.0",
+        "TypeScript v3.0",
+        "TypeScript v4.0",
+        "TypeScript v4.4.3"
+      ]
+    },
+    {
+      "id": "Backend",
+      "price": "400",
+      "lcGeneration": "100",
+      "growth": "1.15",
+      "upgrades": [
+        "Node.js v0.1.0",
+        "Node.js v0.2.0",
+        "Node.js v0.4.0",
+        "Node.js v0.6.0",
+        "Node.js v0.8.0",
+        "Node.js v0.10.0",
+        "Node.js v0.12.0",
+        "Node.js v4.0.0",
+        "Node.js v6.0.0",
+        "Node.js v8.0.0",
+        "Node.js v10.0.0",
+        "Node.js v12.0.0"
+      ]
+    }
+  ]
+}

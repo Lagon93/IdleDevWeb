@@ -14,8 +14,7 @@ function Stats() {
 
   return (
     <div className="stats">
-      <img src="/lc_icon.png" alt="LC Icon" />
-      <p>LC: {lcValue}</p>
+      <p>LC: {lcValue}</p> <img src="img/PJ.png" alt="LC Icon" />
         <p>LC/S: {lcGeneration}</p>
     </div>
   );

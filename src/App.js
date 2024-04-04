@@ -13,13 +13,13 @@ function App() {
 
   return (
     <div className="container">
-      <div class="stats_Column">
-      <Stats/>
-      <Button onClick={handleProgramHTML}>Programar web</Button>
-      </div><div className="upgradesList">
-            {UpgradesList.map((upgrade, index) => (
-                <UpgradeComponent key={index} upgrade={upgrade}/>
-            ))}
+        <div class="stats_Column">
+        <Stats onProgramHTML={handleProgramHTML} />
+        <Button onClick={handleProgramHTML}>Programar web</Button>
+        </div><div className="upgradesList">
+              {UpgradesList.map((upgrade, index) => (
+                  <UpgradeComponent key={index} upgrade={upgrade}/>
+          ))}
         </div>
     </div>
   );

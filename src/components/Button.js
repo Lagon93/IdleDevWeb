@@ -1,8 +1,9 @@
 import React from 'react';
+import 'keyboard-css';
 
 function Button({ onClick, children }) {
   return (
-    <button className="button" onClick={onClick}>
+    <button className="kbc-button" onClick={onClick}>
       {children}
     </button>
   );

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import 'keyboard-css';
 
 function UpgradeComponent({ upgrade }) {
     const [price, setPrice] = useState(upgrade.price);
@@ -24,7 +25,7 @@ function UpgradeComponent({ upgrade }) {
             <p>{upgrade.name}</p>
             <p>Price: {price}</p>
             <p>Level: {lvl}</p>
-            <button className="button" onClick={upgrade.handleUpgrade}>Upgrade {nextUpgradeName}</button>
+            <button className="kbc-button" onClick={upgrade.handleUpgrade}>Upgrade {nextUpgradeName}</button>
         </div>
     );
 }

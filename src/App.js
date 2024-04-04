@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="container">
-        <div class="stats_Column">
+        <div className="stats_Column">
         <Stats onProgramHTML={handleProgramHTML} />
         <Button onClick={handleProgramHTML}>Programar web</Button>
         </div><div className="upgradesList">

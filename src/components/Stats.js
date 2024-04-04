@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import lc from '../model/LC';
 
+
+
 function Stats() {
     const [lcValue, setLcValue] = useState(lc.lc);
     const [lcGeneration, setLcGeneration] = useState(lc.lcGeneration);

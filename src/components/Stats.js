@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import lc from '../model/LC';
-
+import NumberFormatter from '../model/NumberFormatter';
 
 
 function Stats() {
@@ -24,6 +24,7 @@ function Stats() {
     }, 300); 
   };
 
+  var fmt = new NumberFormatter();
   return (
     <div className="stats">
       <p>LC: {lcValue}</p><img 

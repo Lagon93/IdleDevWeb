@@ -2,23 +2,29 @@
   "technology": [
     {
       "id": "HTML",
-      "price": "50",
-      "lcGeneration": "1",
-      "growth": "1.15",
+      "price": 50,
+      "lcGeneration": 1,
+      "price_growth": 1.15,
+      "lc_growth": 1.15,
+      "interval": 1000,
       "upgrades": ["HTML", "HTML 2.0", "HTML 3.2", "HTML 4.01", "HTML5"]
     },
     {
       "id": "CSS",
       "price": "100",
-      "lcGeneration": "10",
-      "growth": "1.15",
+      "lcGeneration": 10,
+      "price_growth": 1.15,
+      "lc_growth": 1.15,
+      "interval": 1000,
       "upgrades": ["CSS", "CSS2", "CSS3", "Sass", "Less"]
     },
     {
       "id": "Frontend",
-      "price": "200",
-      "lcGeneration": "100",
-      "growth": "1.15",
+      "price": 200,
+      "lcGeneration": 100,
+      "price_growth": 1.15,
+      "lc_growth": 1.15,
+      "interval": 1000,
       "upgrades": [
         "JavaScript",
         "React.js v0.3",
@@ -53,9 +59,11 @@
     },
     {
       "id": "Backend",
-      "price": "400",
-      "lcGeneration": "100",
-      "growth": "1.15",
+      "price": 400,
+      "lcGeneration": 100,
+      "price_growth": 1.15,
+      "lc_growth": 1.15,
+      "interval": 1000,
       "upgrades": [
         "Node.js v0.1.0",
         "Node.js v0.2.0",

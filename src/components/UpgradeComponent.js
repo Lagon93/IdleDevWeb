@@ -7,6 +7,7 @@ function UpgradeComponent({ upgrade }) {
     const [price, setPrice] = useState(upgrade.price);
     const [lvl, setLvl] = useState(upgrade.lvl);
     const [nextUpgradeName, setNextUpgradeName] = useState(upgrade.name);
+    const fmt = new NumberFormatter();
 
     useEffect(() => {
         upgrade.subscribe(() => {
@@ -18,17 +19,18 @@ function UpgradeComponent({ upgrade }) {
             } else {
                 setNextUpgradeName("MAX");
             }
+
+            if (typeof upgrade.price === "number") {
+                setPrice(fmt.formatBigInt(upgrade.price * 100));
+            }
         });
     }, []);
 
-  var fmt = new NumberFormatter();
-
-    
     return (
         <div className="upgrade">
             <h2>{upgrade.id}</h2>
             <p>{upgrade.name}</p>
-            <p>Price: {fmt.formatBigInt(price*100)}</p>
+            <p>Price: {price}</p>
             <p>Level: {lvl}</p>
             <button className="kbc-button button" onClick={upgrade.handleUpgrade}>Upgrade {nextUpgradeName}</button>
         </div>

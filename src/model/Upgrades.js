@@ -1,4 +1,3 @@
-import React from 'react';
 import lc from './LC';
 import upgradesJson from '../json/upgrades.json';
 
@@ -9,19 +8,21 @@ class Upgrades {
     names = '';
     namesList = [];
     price = 0;
-    growth = 0;
+    priceGrowth = 0;
     lcGeneration = 0;
+    lcGenerationGrowth = 0;
     subscribers = [];
 
-    constructor(id, namesList, price, growth, lcGeneration) {
+    constructor(id, namesList, price, priceGrowth, lcGeneration, lcGenerationGrowth, interval) {
         this.id = id
         this.price = price;
-        this.growth = growth;
+        this.priceGrowth = priceGrowth;
         this.namesList = namesList;
         this.lcGeneration = lcGeneration;
+        this.lcGenerationGrowth = lcGenerationGrowth;
         this.lvl = 0;
         this.name = namesList[this.lvl];
-        this.interval = 1000;
+        this.interval = interval;
         this.subscribers = [];
     }
 
@@ -32,12 +33,23 @@ class Upgrades {
 
         if (this.lvl === this.namesList.length) {
             this.price = "MAX";
+        } else if (this.lvl === 1) {
+            this.price = this.calculatePrice();
+            lc.startAutoGeneration(this.lcGeneration, this.interval)
         } else {
-            this.price = this.price * Math.pow(this.growth, this.lvl);
-            this.lcGeneration = this.lcGeneration * Math.pow(2, this.lvl);
+            this.price = this.calculatePrice();
+            this.lcGeneration = this.calculateLcGeneration();
             lc.startAutoGeneration(this.lcGeneration, this.interval);
         }
         this.notifySubscribers()
+    }
+
+    calculatePrice = () => {
+        return this.price * this.priceGrowth;
+    }
+
+    calculateLcGeneration = () => {
+        return this.lcGeneration * this.lcGenerationGrowth;
     }
 
     handleUpgrade = () => {
@@ -65,7 +77,7 @@ class Upgrades {
 }
 
 const UpgradesList = upgradesJson.technology.map((upgrade) => {
-    return new Upgrades(upgrade.id, upgrade.upgrades, upgrade.price, upgrade.growth, upgrade.lcGeneration);
+    return new Upgrades(upgrade.id, upgrade.upgrades, upgrade.price, upgrade.price_growth, upgrade.lcGeneration, upgrade.lc_growth, upgrade.interval);
 });
 
 export default UpgradesList;

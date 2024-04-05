@@ -3,7 +3,7 @@ import 'keyboard-css';
 
 function Button({ onClick, children }) {
   return (
-    <button className="kbc-button" onClick={onClick}>
+    <button className="kbc-button button" onClick={onClick}>
       {children}
     </button>
   );

@@ -13,7 +13,6 @@ class LC {
     setLc(value){
         this.lc = value;
         this.notifySubscribers();
-        console.log(this.lc)
     }
 
     addLc(amount){
@@ -24,16 +23,17 @@ class LC {
         this.setLc(this.lc - amount)
     }
 
-    addLcGeneration = (lc, ms) => {
-        this.lcGeneration += lc / (ms / 1000);
+    setLcGeneration(value){
+        this.lcGeneration = value;
         this.notifySubscribers();
     }
 
-    startAutoGeneration = (lcGenerated, interval) => {
-        this.addLcGeneration(lcGenerated, interval);
-        setInterval(() => {
-            this.addLc(lcGenerated);
-        }, interval);
+    addLcGeneration(amount){
+        this.setLcGeneration(this.lcGeneration + amount);
+    }
+
+    subtractLcGeneration(amount){
+        this.setLcGeneration(this.lcGeneration - amount);
     }
 
     subscribe(callback){

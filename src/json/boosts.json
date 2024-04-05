@@ -1,0 +1,16 @@
+{
+  "boosters" : [
+    {
+      "id": "HTML Bootcamp",
+      "technology" : "HTML",
+      "multiplier" : 1.5,
+      "price" : 1000
+    },
+    {
+      "id" : "CSS Bootcamp",
+      "technology" : "CSS",
+      "multiplier" : 1.5,
+      "price" : 1000
+    }
+  ]
+}

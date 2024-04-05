@@ -4,10 +4,10 @@ import NumberFormatter from '../model/NumberFormatter';
 
 
 function Stats() {
-    const [lcValue, setLcValue] = useState(lc.lc);
-    const [lcGeneration, setLcGeneration] = useState(lc.lcGeneration);
-    const [clicked, setClicked] = useState(false); // Estado para controlar si se ha hecho clic en la imagen
     const fmt = new NumberFormatter();
+    const [lcValue, setLcValue] = useState(fmt.formatBigInt(lc.lc*100));
+    const [lcGeneration, setLcGeneration] = useState(fmt.formatBigInt(lc.lcGeneration*100));
+    const [clicked, setClicked] = useState(false); // Estado para controlar si se ha hecho clic en la imagen
 
 
     useEffect(() => {

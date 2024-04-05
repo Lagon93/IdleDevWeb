@@ -11,6 +11,9 @@ class Upgrades {
     priceGrowth = 0;
     lcGeneration = 0;
     lcGenerationGrowth = 0;
+    lcGenerationTotal = 0;
+    lcGenerationIntervalValue = 0;
+    autoGenerationInterval;
     subscribers = [];
 
     constructor(id, namesList, price, priceGrowth, lcGeneration, lcGenerationGrowth, interval) {
@@ -20,6 +23,7 @@ class Upgrades {
         this.namesList = namesList;
         this.lcGeneration = lcGeneration;
         this.lcGenerationGrowth = lcGenerationGrowth;
+        this.lcGenerationTotal = 0;
         this.lvl = 0;
         this.name = namesList[this.lvl];
         this.interval = interval;
@@ -31,17 +35,14 @@ class Upgrades {
         this.lvl++;
         this.name = this.namesList[this.lvl - 1];
 
-        if (this.lvl === this.namesList.length) {
-            this.price = "MAX";
-        } else if (this.lvl === 1) {
-            this.price = this.calculatePrice();
-            lc.startAutoGeneration(this.lcGeneration, this.interval)
-        } else {
-            this.price = this.calculatePrice();
-            this.lcGeneration = this.calculateLcGeneration();
-            lc.startAutoGeneration(this.lcGeneration, this.interval);
-        }
+        this.price = this.calculatePrice();
+        this.startAutoGeneration(true)
+
         this.notifySubscribers()
+    }
+
+    isMaxLvl = () => {
+        return this.lvl === this.namesList.length;
     }
 
     calculatePrice = () => {
@@ -53,16 +54,24 @@ class Upgrades {
     }
 
     handleUpgrade = () => {
+        if (this.isMaxLvl()) {
+            alert('Ya has mejorado al máximo')
+            return;
+        }
+        
         if (lc.lc < this.price) {
             alert('No tienes suficientes LC')
             return;
         }
-
-        if (this.lvl >= this.namesList.length) {
-            alert('Ya has mejorado al máximo')
-            return;
-        }
+        
         this.upgradeLvl();
+    }
+
+    activateBoost(multiplier) {
+        this.lcGeneration = this.lcGeneration * multiplier;
+        this.lcGenerationTotal = this.lcGenerationTotal * multiplier;
+        this.startAutoGeneration(false);
+        this.notifySubscribers();
     }
 
     subscribe(callback){
@@ -73,6 +82,25 @@ class Upgrades {
         this.subscribers.forEach((callback) => {
             callback();
         });
+    }
+
+    startAutoGeneration = (addLcGenerate) => {
+        if(this.autoGenerationInterval){
+            clearInterval(this.autoGenerationInterval);
+        }
+        lc.subtractLcGeneration(this.lcGenerationIntervalValue);
+
+        if (addLcGenerate) this.lcGenerationTotal += this.lcGeneration;
+
+        this.autoGenerationInterval = setInterval(() => {
+            lc.addLc(this.lcGenerationTotal);
+        }, this.interval);
+
+        this.lcGenerationIntervalValue = this.lcGenerationTotal;
+        lc.addLcGeneration(this.lcGenerationTotal);
+
+        if (addLcGenerate) this.lcGeneration = this.calculateLcGeneration();
+
     }
 }
 

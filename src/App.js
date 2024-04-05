@@ -5,6 +5,8 @@ import lc from "./model/LC";
 import UpgradesList from "./model/Upgrades";
 import UpgradeComponent from "./components/UpgradeComponent";
 import './styles.css';
+import BoostsList from "./model/Boosts";
+import BoostComponent from "./components/BoostComponent";
 
 function App() {
     const handleProgramHTML = () => {
@@ -16,10 +18,16 @@ function App() {
         <div className="stats_Column">
         <Stats onProgramHTML={handleProgramHTML} />
         <Button onClick={handleProgramHTML}>Programar web</Button>
-        </div><div className="upgradesList">
+        </div>
+        <div className="upgradesList">
               {UpgradesList.map((upgrade, index) => (
                   <UpgradeComponent key={index} upgrade={upgrade}/>
           ))}
+        </div>
+        <div className="boostsList">
+            {BoostsList.map((boost, index) => (
+                <BoostComponent key={index} boost={boost}/>
+            ))}
         </div>
     </div>
   );

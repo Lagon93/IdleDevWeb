@@ -1,6 +1,5 @@
-import React from 'react';
-
 class LC {
+
     lc;
     lcGeneration;
     subscribers;
@@ -14,6 +13,7 @@ class LC {
     setLc(value){
         this.lc = value;
         this.notifySubscribers();
+        console.log(this.lc)
     }
 
     addLc(amount){

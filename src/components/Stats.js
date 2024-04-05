@@ -7,12 +7,13 @@ function Stats() {
     const [lcValue, setLcValue] = useState(lc.lc);
     const [lcGeneration, setLcGeneration] = useState(lc.lcGeneration);
     const [clicked, setClicked] = useState(false); // Estado para controlar si se ha hecho clic en la imagen
+    const fmt = new NumberFormatter();
 
-  
+
     useEffect(() => {
         lc.subscribe(() => {
-            setLcValue(lc.lc);
-            setLcGeneration(lc.lcGeneration);
+            setLcValue(fmt.formatBigInt(lc.lc*100));
+            setLcGeneration(fmt.formatBigInt(lc.lcGeneration*100));
         });
     }, []);
 
@@ -24,7 +25,6 @@ function Stats() {
     }, 300); 
   };
 
-  var fmt = new NumberFormatter();
   return (
     <div className="stats">
       <p>LC: {lcValue}</p><img 

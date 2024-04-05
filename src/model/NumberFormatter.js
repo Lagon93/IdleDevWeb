@@ -18,7 +18,7 @@ const UNIDADES = {
 };
 class NumberFormatter {
   constructor(mode) {
-    if(mode && (mode == CIENTIFICO || mode == INGENIERO || mode == UNIDAD)) {
+    if(mode && (mode === CIENTIFICO || mode === INGENIERO || mode === UNIDAD)) {
       this.mode = mode;
     } else {
       this.mode = UNIDAD;
@@ -39,7 +39,7 @@ class NumberFormatter {
   formatoCientifico(n) {
     var e = 0;
     while(n >= BigInt(1000)) {
-      n /= BigInt(10);
+      n /= 10;
       e++;
     }
     var n2 = Number(n) / 100.0;
@@ -48,7 +48,7 @@ class NumberFormatter {
   formatoIngeniero(n) {
     var e = 0;
     while(n >= BigInt(100000)) {
-      n /= BigInt(1000);
+      n /= 1000;
       e+=3;
     }
     var n2 = Number(n) / 100.0;
@@ -56,8 +56,9 @@ class NumberFormatter {
   }
   formatoUnidad(n) {
     var e = 0;
+
     while(n >= BigInt(100000)) {
-      n /= BigInt(1000);
+      n /= 1000;
       e+=3;
     }
     var n2 = Number(n) / 100.0;

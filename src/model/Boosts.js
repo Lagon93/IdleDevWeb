@@ -21,12 +21,11 @@ class Boosts {
     buyBoost = () => {
 
         if (this.active) {
-            return;
+            return false;
         }
 
         if (lc.lc < this.price) {
-            alert('No tienes suficientes LC')
-            return;
+            return false;
         }
 
         lc.subtractLc(this.price);
@@ -34,6 +33,7 @@ class Boosts {
 
         this.upgrade.activateBoost(this.multiplier);
         this.notifySubscribers();
+        return true;
     }
 
     subscribe(callback) {

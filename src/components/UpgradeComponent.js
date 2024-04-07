@@ -21,8 +21,37 @@ function UpgradeComponent({ upgrade }) {
             setPrice(fmt.formatBigInt(upgrade.price * 100));
             setLcGeneration(fmt.formatBigInt(upgrade.lcGenerationTotal * 100));
             setLcGenerationNext(fmt.formatBigInt(upgrade.lcGeneration * 100));
+
+            setButton(
+                <button className="kbc-button button" onClick={onclickUpgrade}>
+                    Upgrade: {fmt.formatBigInt(upgrade.price * 100)} LC
+                </button>
+            )
         });
     }, []);
+
+    var onclickUpgrade = () => {
+        if (!upgrade.handleUpgrade()) {
+            setButton(
+                <button className="kbc-button button" disabled>
+                    Not enough LC
+                </button>
+            );
+
+            setTimeout(() => {
+                setButton(
+                    <button className="kbc-button button" onClick={onclickUpgrade}>
+                        Upgrade: {fmt.formatBigInt(upgrade.price * 100)} LC
+                    </button>
+                );
+            }, 3000);
+        }
+    }
+
+    const [button, setButton] = useState(
+        <button className="kbc-button button" onClick={onclickUpgrade}>
+            Upgrade: {price} LC
+        </button>);
 
     return (
         <div className="upgrade">
@@ -38,9 +67,7 @@ function UpgradeComponent({ upgrade }) {
             {!upgrade.isMaxLvl() && (
                 <div>
                     <p>{nextUpgradeName} +{lcGenerationNext} LC/S</p>
-                    <button className="kbc-button button" onClick={upgrade.handleUpgrade}>
-                        Upgrade: {price} LC
-                    </button>
+                    {button}
                 </div>
             )}
             {upgrade.isMaxLvl() && (

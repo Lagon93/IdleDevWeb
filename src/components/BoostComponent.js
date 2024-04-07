@@ -14,8 +14,28 @@ function BoostComponent({ boost }) {
     }, []);
 
     const onClick = () => {
-        boost.buyBoost();
+        if (!boost.buyBoost()) {
+            setButton(
+                <button className="kbc-button button" disabled>
+                    Not enough LC
+                </button>
+            );
+
+            setTimeout(() => {
+                setButton(
+                    <button className="kbc-button button" onClick={onClick}>
+                        Buy: {ftm.formatBigInt(boost.price * 100)} LC
+                    </button>
+                );
+            }, 3000);
+        }
     };
+
+    const [button, setButton] = useState(
+        <button className="kbc-button button" onClick={onClick}>
+            Buy: {ftm.formatBigInt(boost.price * 100)} LC
+        </button>
+    );
 
     return (
         <div className="upgrade">
@@ -28,9 +48,9 @@ function BoostComponent({ boost }) {
                         Active
                     </button>
                 ) : (
-                    <button className="kbc-button button" onClick={onClick}>
-                        Buy: {price} LC
-                    </button>
+                    <>
+                        {button}
+                    </>
                 )
             }
         </div>

@@ -57,16 +57,15 @@ class Upgrades {
 
     handleUpgrade = () => {
         if (this.isMaxLvl()) {
-            alert('Ya has mejorado al máximo')
-            return;
+            return false;
         }
-        
+
         if (lc.lc < this.price) {
-            alert('No tienes suficientes LC')
-            return;
+            return false;
         }
-        
+
         this.upgradeLvl();
+        return true;
     }
 
     activateBoost(multiplier) {

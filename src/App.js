@@ -13,23 +13,38 @@ function App() {
       lc.addLc(10);
     }
 
-  return (
-    <div className="container">
-        <div className="stats_Column">
-        <Stats onProgramHTML={handleProgramHTML} />
-        <Button onClick={handleProgramHTML}>Programar web</Button>
-        </div>
-        <div className="upgradesList">
+    return (
+      <div className="container">
+          <nav className="navbar">
+              <div className="navbar-logo">
+                  <img src="img/logoIWD.png" alt="Company Logo"/>
+              </div>
+              <div className="navbar-menu">
+                  <input type="checkbox" id="menu-toggle"/>
+                  <label htmlFor="menu-toggle">&#9776;</label>
+                  <ul className="menu-items">
+                      <li><a href="#">Home</a></li>
+                      <li><a href="#">About</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="#">Contact</a></li>
+                  </ul>
+              </div>
+          </nav>
+          <div className="stats_Column">
+              <Stats onProgramHTML={handleProgramHTML} />
+              <Button onClick={handleProgramHTML}>Programar web</Button>
+          </div>
+          <div className="upgradesList">
               {UpgradesList.map((upgrade, index) => (
                   <UpgradeComponent key={index} upgrade={upgrade}/>
-          ))}
-        </div>
-        <div className="boostsList">
-            {BoostsList.map((boost, index) => (
-                <BoostComponent key={index} boost={boost}/>
-            ))}
-        </div>
-    </div>
+              ))}
+          </div>
+          <div className="boostsList">
+              {BoostsList.map((boost, index) => (
+                  <BoostComponent key={index} boost={boost}/>
+              ))}
+          </div>
+      </div>
   );
 }
 

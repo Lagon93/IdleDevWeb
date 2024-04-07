@@ -26,7 +26,10 @@ function UpgradeComponent({ upgrade }) {
 
     return (
         <div className="upgrade">
-            <h2>{upgrade.id}</h2>
+            <div className="logo-and-title">
+                <img className="logos" src={`img/${upgrade.logo}`} alt="Code Logo"/>
+                <h2>{upgrade.id}</h2>
+            </div>
             <p>{upgrade.name}</p>
             <p>LC/S Total: {lcGeneration} LC/S </p>
             <p>Level: {lvl}</p>

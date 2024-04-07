@@ -6,7 +6,7 @@
   background-size: 100%;
   margin: 0; /* Elimina el margen predeterminado del body */
   padding: 0; /* Elimina el padding predeterminado del body */
-  height: 100vh; /* Establece la altura del body al 100% del viewport height */
+  height: 100%; /* Establece la altura del body al 100% del viewport height */
  }
 
 
@@ -35,4 +35,77 @@
     width:50%;
   }
   
- 
+ .logos{
+  width:3vh;
+  margin-right: 1vw; 
+  filter: drop-shadow( 5px 5px 10px #000 );
+  image-rendering: pixelated;
+ }
+
+ .logo-and-title {
+  display: flex;
+  align-items: center;
+}
+
+.logo-and-title {
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros elementos */
+}
+
+.navbar-logo img {
+  height: 6vh;
+  margin-left: 45vw; /* Ajusta la altura según tus necesidades */
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu input[type="checkbox"] {
+  display: none;
+}
+
+.navbar-menu label {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.menu-items {
+  display: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-items li {
+  padding: 10px;
+}
+
+.menu-items li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Mostrar el menú desplegable cuando se activa el checkbox */
+input[type="checkbox"]:checked ~ .menu-items {
+  display: block;
+}
+
+.container {
+  padding-top: 9vh; /* Ajusta este valor para dejar espacio debajo de la barra de navegación */
+}

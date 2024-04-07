@@ -2,6 +2,7 @@
   "technology": [
     {
       "id": "HTML",
+      "logo": "Htmllogo2.png",
       "price": 50,
       "lcGeneration": 1,
       "price_growth": 1.15,

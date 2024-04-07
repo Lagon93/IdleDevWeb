@@ -3,6 +3,7 @@ import upgradesJson from '../json/upgrades.json';
 
 class Upgrades {
     id = 0;
+    logo='';
     lvl = 0;
     interval = 0;
     names = '';
@@ -16,8 +17,9 @@ class Upgrades {
     autoGenerationInterval;
     subscribers = [];
 
-    constructor(id, namesList, price, priceGrowth, lcGeneration, lcGenerationGrowth, interval) {
+    constructor(id, logo, namesList, price, priceGrowth, lcGeneration, lcGenerationGrowth, interval) {
         this.id = id
+        this.logo= logo
         this.price = price;
         this.priceGrowth = priceGrowth;
         this.namesList = namesList;
@@ -105,7 +107,7 @@ class Upgrades {
 }
 
 const UpgradesList = upgradesJson.technology.map((upgrade) => {
-    return new Upgrades(upgrade.id, upgrade.upgrades, upgrade.price, upgrade.price_growth, upgrade.lcGeneration, upgrade.lc_growth, upgrade.interval);
+    return new Upgrades(upgrade.id, upgrade.logo, upgrade.upgrades, upgrade.price, upgrade.price_growth, upgrade.lcGeneration, upgrade.lc_growth, upgrade.interval);
 });
 
 export default UpgradesList;

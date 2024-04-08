@@ -1,15 +1,37 @@
 import React, {useEffect, useState} from "react";
 import NumberFormatter from '../model/NumberFormatter';
+import lc from "../model/LC";
 
 function BoostComponent({ boost }) {
     const ftm = new NumberFormatter();
-    const [price, setPrice] = useState(ftm.formatBigInt(boost.price * 100))
-    const [active, setActive] = useState(boost.active);
 
     useEffect(() => {
-        boost.subscribe(() => {;
-            setPrice(ftm.formatBigInt(boost.price * 100));
-            setActive(boost.active);
+        boost.subscribe(() => {
+            if (boost.active) {
+                setButton(
+                    <button className="kbc-button button" disabled>
+                        Active
+                    </button>
+                )
+            }
+        });
+
+        lc.subscribe(() => {
+            if (!boost.canBuyBoost()) {
+                if (!boost.active) {
+                    setButton(
+                        <button className="kbc-button button" disabled>
+                            Buy: {ftm.formatBigInt(boost.price * 100)} LC
+                        </button>
+                    )
+                }
+            } else {
+                setButton(
+                    <button className="kbc-button button" onClick={onClick}>
+                        Buy: {ftm.formatBigInt(boost.price * 100)} LC
+                    </button>
+                )
+            }
         });
     }, []);
 
@@ -32,7 +54,7 @@ function BoostComponent({ boost }) {
     };
 
     const [button, setButton] = useState(
-        <button className="kbc-button button" onClick={onClick}>
+        <button className="kbc-button button" disabled={!boost.canBuyUpgrade} onClick={onClick}>
             Buy: {ftm.formatBigInt(boost.price * 100)} LC
         </button>
     );
@@ -42,17 +64,7 @@ function BoostComponent({ boost }) {
             <h2>{boost.id}</h2>
             <p>{boost.upgrade.name}</p>
             <p>Multiplier: {boost.multiplier}x</p>
-            {
-                active ? (
-                    <button className="kbc-button button" disabled>
-                        Active
-                    </button>
-                ) : (
-                    <>
-                        {button}
-                    </>
-                )
-            }
+            <>{button}</>
         </div>
 
     );

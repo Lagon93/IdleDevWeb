@@ -85,7 +85,7 @@ class Upgrades {
         });
     }
 
-    startAutoGeneration = (addLcGenerate) => {
+    startAutoGeneration(addLcGenerate) {
         if(this.autoGenerationInterval){
             clearInterval(this.autoGenerationInterval);
         }
@@ -102,6 +102,11 @@ class Upgrades {
 
         if (addLcGenerate) this.lcGeneration = this.calculateLcGeneration();
 
+    }
+
+    canBuyUpgrade() {
+        if (this.isMaxLvl()) return false;
+        return lc.lc >= this.price;
     }
 }
 

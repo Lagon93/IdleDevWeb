@@ -62,12 +62,12 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros elementos */
+  z-index: 1000; 
 }
 
 .navbar-logo img {
   height: 6vh;
-  margin-left: 45vw; /* Ajusta la altura según tus necesidades */
+  margin-left: 45vw; 
 }
 
 .navbar-menu {
@@ -107,5 +107,5 @@ input[type="checkbox"]:checked ~ .menu-items {
 }
 
 .container {
-  padding-top: 9vh; /* Ajusta este valor para dejar espacio debajo de la barra de navegación */
+  padding-top: 9vh; 
 }

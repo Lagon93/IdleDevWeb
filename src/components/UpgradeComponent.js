@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import 'keyboard-css';
 import NumberFormatter from '../model/NumberFormatter';
+import lc from "../model/LC";
 
 
 function UpgradeComponent({ upgrade }) {
@@ -22,34 +23,36 @@ function UpgradeComponent({ upgrade }) {
             setLcGeneration(fmt.formatBigInt(upgrade.lcGenerationTotal * 100));
             setLcGenerationNext(fmt.formatBigInt(upgrade.lcGeneration * 100));
 
-            setButton(
-                <button className="kbc-button button" onClick={onclickUpgrade}>
-                    Upgrade: {fmt.formatBigInt(upgrade.price * 100)} LC
-                </button>
-            )
+            if (upgrade.isMaxLvl()) {
+                setButton(
+                    <button className="kbc-button button" disabled>
+                        MAX
+                    </button>
+                )
+            }
+        });
+
+        lc.subscribe(() => {
+            if (!upgrade.canBuyUpgrade()) {
+                if (!upgrade.isMaxLvl()) {
+                    setButton(
+                        <button className="kbc-button button" disabled>
+                            Upgrade: {fmt.formatBigInt(upgrade.price * 100)} LC
+                        </button>
+                    )
+                }
+            } else {
+                setButton(
+                    <button className="kbc-button button" onClick={upgrade.handleUpgrade}>
+                        Upgrade: {fmt.formatBigInt(upgrade.price * 100)} LC
+                    </button>
+                )
+            }
         });
     }, []);
 
-    var onclickUpgrade = () => {
-        if (!upgrade.handleUpgrade()) {
-            setButton(
-                <button className="kbc-button button" disabled>
-                    Not enough LC
-                </button>
-            );
-
-            setTimeout(() => {
-                setButton(
-                    <button className="kbc-button button" onClick={onclickUpgrade}>
-                        Upgrade: {fmt.formatBigInt(upgrade.price * 100)} LC
-                    </button>
-                );
-            }, 3000);
-        }
-    }
-
     const [button, setButton] = useState(
-        <button className="kbc-button button" onClick={onclickUpgrade}>
+        <button className="kbc-button button" disabled={!upgrade.canBuyUpgrade()} onClick={upgrade.handleUpgrade}>
             Upgrade: {price} LC
         </button>);
 
@@ -64,17 +67,9 @@ function UpgradeComponent({ upgrade }) {
             <p>Level: {lvl}</p>
 
             <p>Next Upgrade:</p>
-            {!upgrade.isMaxLvl() && (
-                <div>
-                    <p>{nextUpgradeName} +{lcGenerationNext} LC/S</p>
-                    {button}
-                </div>
-            )}
-            {upgrade.isMaxLvl() && (
-                <button className="kbc-button button" disabled>
-                    MAX
-                </button>
-            )}
+            {upgrade.isMaxLvl() ? <p></p> : <p>{nextUpgradeName}</p>}
+            {upgrade.isMaxLvl() ? <p></p> : <p>LC/S: {lcGenerationNext}</p>}
+            <>{button}</>
         </div>
     );
 }

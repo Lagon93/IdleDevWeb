@@ -45,6 +45,11 @@ class Boosts {
             callback();
         });
     }
+
+    canBuyBoost = () => {
+        if (this.active) return false;
+        return lc.lc >= this.price && !this.active;
+    }
 }
 
 const BoostsList = boostsJson.boosters.map((boost) => {

@@ -2,12 +2,14 @@ class LC {
 
     lc;
     lcGeneration;
+    lcClick;
     subscribers;
 
     constructor() {
         this.lc = 0;
         this.lcGeneration = 0;
         this.subscribers = [];
+        this.lcClick = 10;
     }
 
     setLc(value){
@@ -21,6 +23,10 @@ class LC {
 
     subtractLc(amount){
         this.setLc(this.lc - amount)
+    }
+
+    clickLc(){
+        this.addLc(this.lcClick);
     }
 
     setLcGeneration(value){

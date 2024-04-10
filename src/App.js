@@ -35,13 +35,13 @@ function App() {
               <Button onClick={handleProgramHTML}>Programar web</Button>
           </div>
           <div className="upgradesList">
-              {UpgradesList.map((upgrade, index) => (
-                  <UpgradeComponent key={index} upgrade={upgrade}/>
+              {UpgradesList.map((upgrade) => (
+                  <UpgradeComponent key={upgrade.id} upgrade={upgrade}/>
               ))}
           </div>
           <div className="boostsList">
-              {BoostsList.map((boost, index) => (
-                  <BoostComponent key={index} boost={boost}/>
+              {BoostsList.map((boost) => (
+                  <BoostComponent key={boost.id} boost={boost}/>
               ))}
           </div>
       </div>

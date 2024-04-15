@@ -62,13 +62,14 @@ function UpgradeComponent({ upgrade }) {
                 <img className="logos" src={`img/${upgrade.logo}`} alt="Code Logo"/>
                 <h2>{upgrade.id}</h2>
             </div>
+            <div className="UpgradeText">
             <p>{upgrade.name}</p>
-            <p>LC/S Total: {lcGeneration} LC/S </p>
             <p>Level: {lvl}</p>
-
-            <p>Next Upgrade:</p>
-            {upgrade.isMaxLvl() ? <p></p> : <p>{nextUpgradeName}</p>}
-            {upgrade.isMaxLvl() ? <p></p> : <p>LC/S: {lcGenerationNext}</p>}
+            <p>LC/S Total: {lcGeneration} LC/S </p>
+            <p>Upgrade:
+            {/*{upgrade.isMaxLvl() ? <p></p> : <p>{nextUpgradeName}</p>}*/}
+            {<p>{upgrade.isMaxLvl()} {lcGenerationNext}LC/S</p>}
+            </p></div>
             <>{button}</>
         </div>
     );

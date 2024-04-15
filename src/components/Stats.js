@@ -20,9 +20,9 @@ function Stats() {
 
   return (
     <div className="stats">
-      <p>LC: {lcValue}</p>
         <Image></Image>
-        <p>LC/S: {lcGeneration}</p>
+        <p>LC: <p className="numbers">{lcValue}</p></p>
+        <p>LC/S: <p className="numbers">{lcGeneration}</p></p>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, { useState } from 'react';
 import Stats from './components/Stats';
 import Button from './components/Button';
 import lc from "./model/LC";
@@ -8,11 +8,16 @@ import './styles.css';
 import BoostsList from "./model/Boosts";
 import BoostComponent from "./components/BoostComponent";
 
+
 function App() {
+    const [activeTab, setActiveTab] = useState('Codigos');
+
     const handleProgramHTML = () => {
       lc.addLc(10);
     }
-
+  const handleTabChange = (tabName) => {
+    setActiveTab(tabName);
+  };
     return (
       <div className="container">
           <nav className="navbar">
@@ -32,20 +37,37 @@ function App() {
           </nav>
           <div className="stats_Column">
               <Stats onProgramHTML={handleProgramHTML} />
-              <Button onClick={handleProgramHTML}>Programar web</Button>
           </div>
-          <div className="upgradesList">
+          <div className="tabs-container">
+        <ul className="tabs">
+          <li className={activeTab === 'Codigos' ? 'active' : ''}>
+          <span onClick={() => handleTabChange('Codigos')}>Codigos</span>
+          </li>
+          <li><span>/</span></li>
+          <li className={activeTab === 'Cursos' ? 'active' : ''}>
+          <span onClick={() => handleTabChange('Cursos')}>Cursos</span>
+          </li>
+        </ul>
+        <div className="tab-content">
+          {activeTab === 'Codigos' && (
+            <div className="upgradesList">
               {UpgradesList.map((upgrade) => (
-                  <UpgradeComponent key={upgrade.id} upgrade={upgrade}/>
+                <UpgradeComponent key={upgrade.id} upgrade={upgrade} />
               ))}
-          </div>
-          <div className="boostsList">
+            </div>
+          )}
+          {activeTab === 'Cursos' && (
+            <div className="boostsList">
               {BoostsList.map((boost) => (
-                  <BoostComponent key={boost.id} boost={boost}/>
+                <BoostComponent key={boost.id} boost={boost} />
               ))}
-          </div>
+            </div>
+          )}
+        </div>
       </div>
+    </div>
   );
 }
+
 
 export default App;

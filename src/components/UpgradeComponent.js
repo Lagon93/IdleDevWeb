@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import 'keyboard-css';
-import NumberFormatter from '../model/NumberFormatter';
+import NumberFormatter from '../utilities/NumberFormatter';
 import lc from "../model/LC";
 
 

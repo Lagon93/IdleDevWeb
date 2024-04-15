@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, {useEffect} from 'react';
 import Stats from './components/Stats';
 import Button from './components/Button';
 import lc from "./model/LC";
@@ -7,11 +7,21 @@ import UpgradeComponent from "./components/UpgradeComponent";
 import './styles.css';
 import BoostsList from "./model/Boosts";
 import BoostComponent from "./components/BoostComponent";
+import {loadCache, loadFromFile, saveCache, saveInFile} from "./utilities/SaveData";
 
 function App() {
+
+    useEffect(() => {
+        loadCache();
+    }, []);
+
     const handleProgramHTML = () => {
       lc.addLc(10);
     }
+
+    setInterval(() => {
+        saveCache();
+    }, 1000);
 
     return (
       <div className="container">
@@ -31,11 +41,11 @@ function App() {
               </div>
           </nav>
           <div className="stats_Column">
-              <Stats onProgramHTML={handleProgramHTML} />
+              <Stats onProgramHTML={handleProgramHTML}/>
               <Button onClick={handleProgramHTML}>Programar web</Button>
           </div>
           <div className="upgradesList">
-              {UpgradesList.map((upgrade) => (
+          {UpgradesList.map((upgrade) => (
                   <UpgradeComponent key={upgrade.id} upgrade={upgrade}/>
               ))}
           </div>

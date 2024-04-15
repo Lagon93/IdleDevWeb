@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import lc from '../model/LC';
-import NumberFormatter from '../model/NumberFormatter';
+import NumberFormatter from '../utilities/NumberFormatter';
 import Image from "./Image";
 
 

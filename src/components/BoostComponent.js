@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import NumberFormatter from '../model/NumberFormatter';
+import NumberFormatter from '../utilities/NumberFormatter';
 import lc from "../model/LC";
 
 function BoostComponent({ boost }) {

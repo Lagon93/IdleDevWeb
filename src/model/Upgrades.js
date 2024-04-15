@@ -108,6 +108,19 @@ class Upgrades {
         if (this.isMaxLvl()) return false;
         return lc.lc >= this.price;
     }
+
+    loadJson(json){
+        this.lvl = json.lvl;
+        this.price = json.price;
+        this.lcGeneration = json.lcGeneration;
+        this.lcGenerationTotal = json.lcGenerationTotal;
+        this.priceGrowth = json.priceGrowth;
+        this.lcGenerationGrowth = json.lcGenerationGrowth;
+        this.name = this.namesList[this.lvl];
+        this.startAutoGeneration(false);
+
+        this.notifySubscribers();
+    }
 }
 
 const UpgradesList = upgradesJson.technology.map((upgrade) => {

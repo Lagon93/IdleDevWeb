@@ -50,6 +50,17 @@ class Boosts {
         if (this.active) return false;
         return lc.lc >= this.price && !this.active;
     }
+
+    loadJson(json) {
+        this.id = json.id;
+        this.multiplier = json.multiplier;
+        this.price = json.price;
+        this.active = json.active;
+
+        this.upgrade = UpgradesList.find((upgrade) => upgrade.id === json.upgrade.id);
+
+        this.notifySubscribers();
+    }
 }
 
 const BoostsList = boostsJson.boosters.map((boost) => {

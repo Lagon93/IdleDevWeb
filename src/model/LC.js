@@ -51,6 +51,12 @@ class LC {
             callback();
         });
     }
+
+    loadJson(json){
+        this.lc = json.lc;
+
+        this.notifySubscribers();
+    }
 }
 
 const lc = new LC();

@@ -29,11 +29,20 @@
   }
   
   .stats_Column,
-  .upgradeList {
+  .tabs-container, 
+  .slider-container{
    /* Ambos divs ocupan el mismo espacio */
-    margin: 0 10px;
-    width:50%;
+    margin:  2vw;
+    flex:1;
+ 
+  }
+
+  .stats_Column{
     color: #9392F0;
+  }
+
+  .tabs-container{
+    margin-right: 2vw;
   }
   .numbers{
     color: #fff;
@@ -129,7 +138,7 @@ input[type="checkbox"]:checked ~ .menu-items {
 .tabs li {
   margin-right: 20px;
   padding: 10px 20px;
-  
+  user-select: none;
   
   cursor: pointer;
   
@@ -144,6 +153,7 @@ input[type="checkbox"]:checked ~ .menu-items {
   border-bottom: 2px solid #007bff;
   border: none;
   border-radius: 4px 4px 0px 0px;
+  user-select: none;
 }
 
 .active span {
@@ -159,4 +169,39 @@ input[type="checkbox"]:checked ~ .menu-items {
 
 button.kbc-button{
   margin-left: 2vw;
+}
+
+
+.image-slider {
+  overflow: hidden; /* Oculta las imágenes que exceden el contenedor */
+  width: 100%; /* Ancho del slider */
+  height: 80vh; /* Altura del slider */
+  position: relative; /* Posición relativa para el posicionamiento absoluto de las imágenes */
+}
+
+.image-slider img {
+  width: 100%; /* Ancho del slider */
+  height: auto; /* Altura automática para mantener la proporción de aspecto */
+  position: absolute; /* Posición absoluta para superponer las imágenes */
+  animation: slide 5s linear infinite; /* Animación de desplazamiento */
+  top: -100%; /* Comienza fuera del contenedor arriba */
+}
+
+.image-slider img:nth-child(2) {
+  animation-delay: 2.5s; /* Retraso de la animación para la segunda imagen */
+}
+
+.image-slider img:nth-child(3) {
+  animation-delay: 5s; /* Retraso de la animación para la tercera imagen */
+}
+
+
+
+@keyframes slide {
+  0% {
+      top: -100%; /* Comienza fuera del contenedor arriba */
+  }
+  100% {
+      top: 100%; /* Termina fuera del contenedor abajo */
+  }
 }

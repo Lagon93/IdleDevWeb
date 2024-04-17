@@ -38,6 +38,14 @@ function App() {
           <div className="stats_Column">
               <Stats onProgramHTML={handleProgramHTML} />
           </div>
+                 {/* Slider de imágenes */}
+          <div className="slider-container">
+       <div className="image-slider">
+                <img src="/img/logoIWD.png" alt="Slide 1"/>
+                <img src="/img/logoIWD.png" alt="Slide 2"/>
+                <img src="/img/logoIWD.png" alt="Slide 3"/>
+            </div>
+            </div>
           <div className="tabs-container">
         <ul className="tabs">
           <li className={activeTab === 'Codigos' ? 'active' : ''}>

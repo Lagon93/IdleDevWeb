@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Stats from './components/Stats';
-import Button from './components/Button';
 import lc from "./model/LC";
 import UpgradesList from "./model/Upgrades";
 import UpgradeComponent from "./components/UpgradeComponent";
 import './styles.css';
 import BoostsList from "./model/Boosts";
 import BoostComponent from "./components/BoostComponent";
+import SliderComponent from "./components/SliderComponent";
 
 
 function App() {
@@ -39,13 +39,8 @@ function App() {
               <Stats onProgramHTML={handleProgramHTML} />
           </div>
                  {/* Slider de imágenes */}
-          <div className="slider-container">
-       <div className="image-slider">
-                <img src="/img/logoIWD.png" alt="Slide 1"/>
-                <img src="/img/logoIWD.png" alt="Slide 2"/>
-                <img src="/img/logoIWD.png" alt="Slide 3"/>
-            </div>
-            </div>
+          <SliderComponent />
+
           <div className="tabs-container">
         <ul className="tabs">
           <li className={activeTab === 'Codigos' ? 'active' : ''}>

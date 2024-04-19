@@ -1,5 +1,6 @@
 import lc from './LC';
 import upgradesJson from '../json/upgrades.json';
+import sliderList from "./Slider";
 
 class Upgrades {
     id = 0;
@@ -15,9 +16,11 @@ class Upgrades {
     lcGenerationTotal = 0;
     lcGenerationIntervalValue = 0;
     autoGenerationInterval;
+    sliderGenerationInterval;
+    slider = "";
     subscribers = [];
 
-    constructor(id, logo, namesList, price, priceGrowth, lcGeneration, lcGenerationGrowth, interval) {
+    constructor(id, logo, namesList, price, priceGrowth, lcGeneration, lcGenerationGrowth, interval, slider) {
         this.id = id
         this.logo= logo
         this.price = price;
@@ -30,6 +33,7 @@ class Upgrades {
         this.name = namesList[this.lvl];
         this.interval = interval;
         this.subscribers = [];
+        this.slider = "/img/sliders/" + slider;
     }
 
     upgradeLvl = () => {
@@ -89,6 +93,13 @@ class Upgrades {
         if(this.autoGenerationInterval){
             clearInterval(this.autoGenerationInterval);
         }
+
+        if (!this.sliderGenerationInterval) {
+            this.sliderGenerationInterval = setInterval(() => {
+                sliderList.addSlider(this.name, this.slider);
+            }, this.interval*2);
+        }
+
         lc.subtractLcGeneration(this.lcGenerationIntervalValue);
 
         if (addLcGenerate) this.lcGenerationTotal += this.lcGeneration;
@@ -101,7 +112,6 @@ class Upgrades {
         lc.addLcGeneration(this.lcGenerationTotal);
 
         if (addLcGenerate) this.lcGeneration = this.calculateLcGeneration();
-
     }
 
     canBuyUpgrade() {
@@ -111,7 +121,7 @@ class Upgrades {
 }
 
 const UpgradesList = upgradesJson.technology.map((upgrade) => {
-    return new Upgrades(upgrade.id, upgrade.logo, upgrade.upgrades, upgrade.price, upgrade.price_growth, upgrade.lcGeneration, upgrade.lc_growth, upgrade.interval);
+    return new Upgrades(upgrade.id, upgrade.logo, upgrade.upgrades, upgrade.price, upgrade.price_growth, upgrade.lcGeneration, upgrade.lc_growth, upgrade.interval, upgrade.slider);
 });
 
 export default UpgradesList;

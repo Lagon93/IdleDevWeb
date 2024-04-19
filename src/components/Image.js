@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import lc from "../model/LC";
 
-function Image({ src, alt, onClick }) {
+function Image() {
     const [clicked, setClicked] = useState(false); // Estado para controlar si se ha hecho clic en la imagen
     const [particles, setParticles] = useState([]);
 

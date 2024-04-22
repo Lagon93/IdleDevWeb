@@ -11,6 +11,8 @@ function UpgradeComponent({ upgrade, jugador, activeTab }) {
     const [nextUpgradeName, setNextUpgradeName] = useState(upgrade.name);
     const [lcGeneration, setLcGeneration] = useState(fmt.formatBigInt(upgrade.lcGenerationTotal * 100));
     const [lcGenerationNext, setLcGenerationNext] = useState(fmt.formatBigInt(upgrade.lcGeneration * 100));
+    const [buyMax, setBuyMax] = useState(false);
+    const [buyMaxLc, setBuyMaxLc] = useState(fmt.formatBigInt(upgrade.calculateMaxBuy() * 100));
 
     useEffect(() => {
         upgrade.subscribe(() => {
@@ -48,6 +50,9 @@ function UpgradeComponent({ upgrade, jugador, activeTab }) {
                     </button>
                 )
             }
+
+            setBuyMaxLc(fmt.formatBigInt(upgrade.calculateMaxBuy() * 100));
+            setBuyMax(upgrade.calculateMaxBuy() !== 0);
         });
 
         activeTab.subscribe(() => {
@@ -60,6 +65,15 @@ function UpgradeComponent({ upgrade, jugador, activeTab }) {
             }
         });
     }, []);
+
+    const handleMaxBuy = () => {
+        if (upgrade.calculateMaxBuy() === 0) {
+            return false;
+        }
+
+        upgrade.buyMax();
+        return true;
+    }
 
     const [button, setButton] = useState(
         <button className="kbc-button button" disabled={!upgrade.canBuyUpgrade()} onClick={upgrade.handleUpgrade}>
@@ -81,6 +95,9 @@ function UpgradeComponent({ upgrade, jugador, activeTab }) {
             {<p>{upgrade.isMaxLvl()} {lcGenerationNext}LC/S</p>}
             </p></div>
             <>{button}</>
+            <button className="kbc-button button" disabled={!buyMax} onClick={handleMaxBuy}>
+                Buy Max: {buyMaxLc}
+            </button>
         </div>
     );
 }

@@ -153,6 +153,25 @@ class Upgrades {
         this.startAutoGeneration(false);
         this.notifySubscribers();
     }
+
+    calculateMaxBuy() {
+        let max = 0;
+        let price = this.price;
+        let lc = this.lc.lc;
+        while (lc >= price) {
+            max++;
+            lc -= price;
+            price = this.calculatePrice();
+        }
+        return max;
+    }
+
+    buyMax() {
+        let max = this.calculateMaxBuy();
+        for (let i = 0; i < max; i++) {
+            this.upgradeLvl();
+        }
+    }
 }
 
 

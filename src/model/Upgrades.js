@@ -20,6 +20,7 @@ class Upgrades {
     sliderGenerationInterval;
     slider = "";
     subscribers = [];
+    maxLvl = 0;
 
     lc;
 
@@ -40,6 +41,7 @@ class Upgrades {
         this.subscribers = [];
         this.slider = "/img/sliders/" + slider;
         this.lc = lc;
+        this.maxLvl = namesList.length;
 
         this.baseData = {
             id: id,
@@ -55,7 +57,8 @@ class Upgrades {
             interval: interval,
             subscribers: [],
             slider: "/img/sliders/" + slider,
-            lc: lc
+            lc: lc,
+            maxLvl: namesList.length
         }
     }
 
@@ -155,13 +158,15 @@ class Upgrades {
     }
 
     calculateMaxBuy() {
+        // start with the current upgrades until the lvl cap
         let max = 0;
         let price = this.price;
         let lc = this.lc.lc;
-        while (lc >= price) {
+        let lvl = this.lvl;
+        while (lc >= price && lvl < this.maxLvl) {
             max++;
-            lc -= price;
-            price = this.calculatePrice();
+            lvl++;
+            price = price * this.priceGrowth;
         }
         return max;
     }

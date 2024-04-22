@@ -158,15 +158,16 @@ class Upgrades {
     }
 
     calculateMaxBuy() {
-        // start with the current upgrades until the lvl cap
+        // start with the current upgrades until the lvl cap or the lc cap
         let max = 0;
-        let price = this.price;
         let lc = this.lc.lc;
+        let price = this.price;
         let lvl = this.lvl;
         while (lc >= price && lvl < this.maxLvl) {
             max++;
-            lvl++;
+            lc -= price;
             price = price * this.priceGrowth;
+            lvl++;
         }
         return max;
     }

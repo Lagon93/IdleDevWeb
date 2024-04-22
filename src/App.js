@@ -8,16 +8,23 @@ import BoostsList from "./model/Boosts";
 import BoostComponent from "./components/BoostComponent";
 import SliderComponent from "./components/SliderComponent";
 
+import Jugador from "./model/Jugador";
+import ActiveTab from "./model/ActiveTab";
+
+const jugador = new Jugador();
+const activeTab = new ActiveTab("Codigos");
 
 function App() {
-    const [activeTab, setActiveTab] = useState('Codigos');
+    const [activeTabValue, setActiveTabValue] = useState(activeTab.activeTab);
 
     const handleProgramHTML = () => {
-      lc.addLc(10);
+      jugador.lc.addLc(10);
     }
-  const handleTabChange = (tabName) => {
-    setActiveTab(tabName);
-  };
+
+    const handleTabChange = (tabName) => {
+        setActiveTabValue(tabName);
+        activeTab.setActiveTab(tabName);
+    };
     return (
       <div className="container">
           <nav className="navbar">
@@ -36,37 +43,36 @@ function App() {
               </div>
           </nav>
           <div className="stats_Column">
-              <Stats onProgramHTML={handleProgramHTML} />
+              <Stats onProgramHTML={handleProgramHTML} jugador={jugador} />
           </div>
-                 {/* Slider de imágenes */}
-          <SliderComponent />
+                 {/* Slider de imágenes
+
+                    <SliderComponent></SliderComponent>
+
+                 */}
 
           <div className="tabs-container">
         <ul className="tabs">
-          <li className={activeTab === 'Codigos' ? 'active' : ''}>
-          <span onClick={() => handleTabChange('Codigos')}>Codigos</span>
+          <li className={activeTabValue === 'Codigos' ? 'active' : ''}>
+          <span onClick={() => handleTabChange("Codigos")}>Codigos</span>
           </li>
           <li><span>/</span></li>
-          <li className={activeTab === 'Cursos' ? 'active' : ''}>
-          <span onClick={() => handleTabChange('Cursos')}>Cursos</span>
+          <li className={activeTabValue === 'Cursos' ? 'active' : ''}>
+          <span onClick={() => handleTabChange("Cursos")}>Cursos</span>
           </li>
         </ul>
-        <div className="tab-content">
-          {activeTab === 'Codigos' && (
-            <div className="upgradesList">
-              {UpgradesList.map((upgrade) => (
-                <UpgradeComponent key={upgrade.id} upgrade={upgrade} />
-              ))}
-            </div>
-          )}
-          {activeTab === 'Cursos' && (
-            <div className="boostsList">
-              {BoostsList.map((boost) => (
-                <BoostComponent key={boost.id} boost={boost} />
-              ))}
-            </div>
-          )}
-        </div>
+          <div className="tab-content">
+              <div className={`upgradesList ${activeTabValue === 'Codigos' ? '' : 'hidden'}`}>
+                  {jugador.upgrades.map((upgrade) => (
+                      <UpgradeComponent key={upgrade.id} upgrade={upgrade} jugador={jugador} activeTab={activeTab}/>
+                  ))}
+              </div>
+              <div className={`boostsList ${activeTabValue === 'Cursos' ? '' : 'hidden'}`}>
+                  {jugador.boosts.map((boost) => (
+                      <BoostComponent key={boost.id} boost={boost} jugador={jugador} activeTab={activeTab}/>
+                  ))}
+              </div>
+          </div>
       </div>
     </div>
   );

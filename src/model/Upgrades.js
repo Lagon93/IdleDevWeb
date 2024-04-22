@@ -1,6 +1,7 @@
 import lc from './LC';
-import upgradesJson from '../json/upgrades.json';
+
 import sliderList from "./Slider";
+import LC from "./LC";
 
 class Upgrades {
     id = 0;
@@ -20,7 +21,11 @@ class Upgrades {
     slider = "";
     subscribers = [];
 
-    constructor(id, logo, namesList, price, priceGrowth, lcGeneration, lcGenerationGrowth, interval, slider) {
+    lc;
+
+    baseData
+
+    constructor(lc, id, logo, namesList, price, priceGrowth, lcGeneration, lcGenerationGrowth, interval, slider) {
         this.id = id
         this.logo= logo
         this.price = price;
@@ -34,10 +39,28 @@ class Upgrades {
         this.interval = interval;
         this.subscribers = [];
         this.slider = "/img/sliders/" + slider;
+        this.lc = lc;
+
+        this.baseData = {
+            id: id,
+            logo: logo,
+            namesList: namesList,
+            price: price,
+            priceGrowth: priceGrowth,
+            lcGeneration: lcGeneration,
+            lcGenerationGrowth: lcGenerationGrowth,
+            lcGenerationTotal: 0,
+            lvl: 0,
+            name: namesList[0],
+            interval: interval,
+            subscribers: [],
+            slider: "/img/sliders/" + slider,
+            lc: lc
+        }
     }
 
     upgradeLvl = () => {
-        lc.subtractLc(this.price);
+        this.lc.subtractLc(this.price);
         this.lvl++;
         this.name = this.namesList[this.lvl - 1];
 
@@ -64,7 +87,7 @@ class Upgrades {
             return false;
         }
 
-        if (lc.lc < this.price) {
+        if (this.lc.lc < this.price) {
             return false;
         }
 
@@ -100,29 +123,39 @@ class Upgrades {
             }, this.interval*2);
         }
 
-        lc.subtractLcGeneration(this.lcGenerationIntervalValue);
+        this.lc.subtractLcGeneration(this.lcGenerationIntervalValue);
 
         if (addLcGenerate) this.lcGenerationTotal += this.lcGeneration;
 
         this.autoGenerationInterval = setInterval(() => {
-            lc.addLc(this.lcGenerationTotal);
+            this.lc.addLc(this.lcGenerationTotal);
         }, this.interval);
 
         this.lcGenerationIntervalValue = this.lcGenerationTotal;
-        lc.addLcGeneration(this.lcGenerationTotal);
+        this.lc.addLcGeneration(this.lcGenerationTotal);
 
         if (addLcGenerate) this.lcGeneration = this.calculateLcGeneration();
     }
 
     canBuyUpgrade() {
         if (this.isMaxLvl()) return false;
-        return lc.lc >= this.price;
+        return this.lc.lc >= this.price;
+    }
+
+    rebirth(lvl) {
+        //reset all and multiply the price by 10 and the generation by 2
+        this.lvl = 0;
+        this.name = this.namesList[this.lvl];
+        this.price = this.baseData.price * 5 ** lvl;
+        this.lcGeneration = this.baseData.lcGeneration * 2 ** lvl;
+        this.lcGenerationTotal = 0;
+        this.lcGenerationIntervalValue = 0;
+        this.startAutoGeneration(false);
+        this.notifySubscribers();
     }
 }
 
-const UpgradesList = upgradesJson.technology.map((upgrade) => {
-    return new Upgrades(upgrade.id, upgrade.logo, upgrade.upgrades, upgrade.price, upgrade.price_growth, upgrade.lcGeneration, upgrade.lc_growth, upgrade.interval, upgrade.slider);
-});
 
-export default UpgradesList;
+
+export default Upgrades;
 

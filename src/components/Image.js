@@ -1,9 +1,15 @@
 import React, {useEffect, useState} from "react";
-import lc from "../model/LC";
 
-function Image() {
+function Image({ jugador }) {
     const [clicked, setClicked] = useState(false); // Estado para controlar si se ha hecho clic en la imagen
     const [particles, setParticles] = useState([]);
+    const [lcClick, setLcClick] = useState(jugador.lc.lcClick);
+
+    useEffect(() => {
+        jugador.lc.subscribe(() => {
+            setLcClick(jugador.lc.lcClick);
+        });
+    });
 
     const handleParticle = (event) => {
         const newParticle = {
@@ -24,7 +30,7 @@ function Image() {
 
     const handleImageClick = (event) => {
         setClicked(true);
-        lc.clickLc();
+        jugador.lc.clickLc();
         setTimeout(() => {
             setClicked(false); // Restablecer el estado clicked a false después de un breve retraso
         }, 300);
@@ -75,7 +81,7 @@ function Image() {
                         pointerEvents: 'none',
                     }}
                 >
-                    +10
+                    +{lcClick}
                 </div>
             ))}
         </>

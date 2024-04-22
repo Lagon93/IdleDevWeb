@@ -1,21 +1,32 @@
 import lc from "./LC";
-import boostsJson from "../json/boosts.json";
-import UpgradesList from "./Upgrades";
 
 class Boosts {
     id;
     upgrade;
+    lc;
     multiplier;
     price;
     active;
     subscribers = [];
 
-    constructor(id, upgrade, multiplier, price) {
+    baseData;
+
+    constructor(lc, id, upgrade, multiplier, price) {
         this.id = id;
         this.upgrade = upgrade;
+        this.lc = lc;
         this.multiplier = multiplier;
         this.price = price;
         this.subscribers = [];
+        this.active = false;
+
+        this.baseData = {
+            id: id,
+            upgrade: upgrade,
+            multiplier: multiplier,
+            price: price,
+            active: false
+        };
     }
 
     buyBoost = () => {
@@ -24,11 +35,11 @@ class Boosts {
             return false;
         }
 
-        if (lc.lc < this.price) {
+        if (this.lc.lc < this.price) {
             return false;
         }
 
-        lc.subtractLc(this.price);
+        this.lc.subtractLc(this.price);
         this.active = true;
 
         this.upgrade.activateBoost(this.multiplier);
@@ -48,15 +59,15 @@ class Boosts {
 
     canBuyBoost = () => {
         if (this.active) return false;
-        return lc.lc >= this.price && !this.active;
+        return this.lc.lc >= this.price && !this.active;
+    }
+
+    rebirth(lvl) {
+        this.active = false;
+        this.multiplier = this.baseData.multiplier * 2 ** lvl;
+        this.price = this.baseData.price * 5 ** lvl;
+        this.notifySubscribers();
     }
 }
 
-const BoostsList = boostsJson.boosters.map((boost) => {
-    let upgrade = UpgradesList.find((upgrade) => upgrade.id === boost.technology);
-
-    console.log(upgrade)
-    return new Boosts(boost.id, upgrade, boost.multiplier, boost.price);
-});
-
-export default BoostsList;
+export default Boosts;

@@ -4,7 +4,7 @@ import NumberFormatter from '../model/NumberFormatter';
 import lc from "../model/LC";
 
 
-function UpgradeComponent({ upgrade }) {
+function UpgradeComponent({ upgrade, jugador, activeTab }) {
     const fmt = new NumberFormatter();
     const [price, setPrice] = useState(fmt.formatBigInt(upgrade.price * 100));
     const [lvl, setLvl] = useState(upgrade.lvl);
@@ -32,7 +32,7 @@ function UpgradeComponent({ upgrade }) {
             }
         });
 
-        lc.subscribe(() => {
+        jugador.lc.subscribe(() => {
             if (!upgrade.canBuyUpgrade()) {
                 if (!upgrade.isMaxLvl()) {
                     setButton(
@@ -45,6 +45,16 @@ function UpgradeComponent({ upgrade }) {
                 setButton(
                     <button className="kbc-button button" onClick={upgrade.handleUpgrade}>
                         Upgrade: {fmt.formatBigInt(upgrade.price * 100)} LC
+                    </button>
+                )
+            }
+        });
+
+        activeTab.subscribe(() => {
+            if (upgrade.isMaxLvl()) {
+                setButton(
+                    <button className="kbc-button button" disabled>
+                        MAX
                     </button>
                 )
             }

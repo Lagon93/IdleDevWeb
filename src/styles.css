@@ -13,6 +13,10 @@
   animation: appear 1s ease-in-out;
 }
 
+.hidden {
+  display: none;
+}
+
 @keyframes appear {
   0% {
     opacity: 0;

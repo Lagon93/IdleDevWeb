@@ -96,8 +96,12 @@ class Upgrades {
 
         if (!this.sliderGenerationInterval) {
             this.sliderGenerationInterval = setInterval(() => {
-                sliderList.addSlider(this.name, this.slider);
-            }, this.interval*2);
+                // if sliderList.addSlider(this.name, this.slider); return false try again in 0,5s, if true do nothing
+                if (!sliderList.addSlider(this.name, this.slider)) {
+                    setTimeout(() => {
+                    }, 500);
+                }
+            }, this.interval*10);
         }
 
         lc.subtractLcGeneration(this.lcGenerationIntervalValue);

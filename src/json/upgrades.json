@@ -61,7 +61,7 @@
         "TypeScript v4.0",
         "TypeScript v4.4.3"
       ],
-      "slider" : "SliderHTML.png"
+      "slider" : "SliderFront.png"
     },
     {
       "id": "Backend",
@@ -85,7 +85,7 @@
         "Node.js v10.0.0",
         "Node.js v12.0.0"
       ],
-      "slider" : "SliderHTML.png"
+      "slider" : "SliderBack.png"
     }
   ]
 }

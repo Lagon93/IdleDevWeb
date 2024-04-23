@@ -9,18 +9,20 @@
   height: 100%; /* Establece la altura del body al 100% del viewport height */
  }
 
-.new-slider {
-  animation: appear 1s ease-in-out;
+.slider {
+  position: relative;
+  transition: top 0.5s ease-out;
+  animation: slideIn 0.5s ease-out;
 }
 
-@keyframes appear {
+@keyframes slideIn {
   0% {
+    transform: translateY(-100%);
     opacity: 0;
-    transform: translateY(-50px);
   }
   100% {
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -36,7 +38,7 @@
 
   .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     font-family: 'Press Start 2P';
     color: #fff;
       /* Define el fondo como un degradado lineal */

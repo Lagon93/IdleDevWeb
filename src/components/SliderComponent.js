@@ -14,9 +14,9 @@ function SliderComponent() {
         <div className="slider">
             {sliderListValue.length > 0 && (
                 <div className="slider-container">
-                    {sliderListValue.map((slider, index) => (
-                        <div key={slider.id} className={`slider-image ${index === 0 ? 'new-slider' : ''}`}>
-                            <img src={slider.image}  alt={slider.upgrade}/>
+                    {sliderListValue.slice().reverse().map((slider, index) => (
+                        <div key={slider.id} className={`slider ${index === 0 ? 'new-slider' : ''}`} style={{top: `${index * 50}px`}}>
+                            <img src={slider.image}  alt={slider.upgrade} className={"slider-image"} />
                         </div>
                     ))}
                 </div>

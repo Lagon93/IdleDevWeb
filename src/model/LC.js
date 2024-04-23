@@ -51,8 +51,13 @@ class LC {
             callback();
         });
     }
+
+    rebirth(lvl){
+        this.lc = 0;
+        this.lcGeneration = 0;
+        this.lcClick = 10 * 2 ** lvl;
+        this.notifySubscribers();
+    }
 }
 
-const lc = new LC();
-
-export default lc;
+export default LC;

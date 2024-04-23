@@ -8,7 +8,8 @@
       "price_growth": 1.15,
       "lc_growth": 1.15,
       "interval": 1000,
-      "upgrades": ["HTML", "HTML 2.0", "HTML 3.2", "HTML 4.01", "HTML5"]
+      "upgrades": ["HTML", "HTML 2.0", "HTML 3.2", "HTML 4.01", "HTML5"],
+      "slider" : "SliderHTML.png"
     },
     {
       "id": "CSS",
@@ -18,7 +19,8 @@
       "price_growth": 1.15,
       "lc_growth": 1.15,
       "interval": 1000,
-      "upgrades": ["CSS", "CSS2", "CSS3", "Sass", "Less"]
+      "upgrades": ["CSS", "CSS2", "CSS3", "Sass", "Less"],
+      "slider" : "SliderCss.png"
     },
     {
       "id": "Frontend",
@@ -58,7 +60,8 @@
         "TypeScript v3.0",
         "TypeScript v4.0",
         "TypeScript v4.4.3"
-      ]
+      ],
+      "slider" : "SliderHTML.png"
     },
     {
       "id": "Backend",
@@ -81,7 +84,8 @@
         "Node.js v8.0.0",
         "Node.js v10.0.0",
         "Node.js v12.0.0"
-      ]
+      ],
+      "slider" : "SliderHTML.png"
     }
   ]
 }

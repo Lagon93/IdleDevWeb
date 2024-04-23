@@ -4,13 +4,15 @@ import NumberFormatter from '../model/NumberFormatter';
 import lc from "../model/LC";
 
 
-function UpgradeComponent({ upgrade }) {
+function UpgradeComponent({ upgrade, jugador, activeTab }) {
     const fmt = new NumberFormatter();
     const [price, setPrice] = useState(fmt.formatBigInt(upgrade.price * 100));
     const [lvl, setLvl] = useState(upgrade.lvl);
     const [nextUpgradeName, setNextUpgradeName] = useState(upgrade.name);
     const [lcGeneration, setLcGeneration] = useState(fmt.formatBigInt(upgrade.lcGenerationTotal * 100));
     const [lcGenerationNext, setLcGenerationNext] = useState(fmt.formatBigInt(upgrade.lcGeneration * 100));
+    const [buyMax, setBuyMax] = useState(false);
+    const [buyMaxLc, setBuyMaxLc] = useState(fmt.formatBigInt(upgrade.calculateMaxBuy() * 100));
 
     useEffect(() => {
         upgrade.subscribe(() => {
@@ -32,7 +34,7 @@ function UpgradeComponent({ upgrade }) {
             }
         });
 
-        lc.subscribe(() => {
+        jugador.lc.subscribe(() => {
             if (!upgrade.canBuyUpgrade()) {
                 if (!upgrade.isMaxLvl()) {
                     setButton(
@@ -48,8 +50,30 @@ function UpgradeComponent({ upgrade }) {
                     </button>
                 )
             }
+
+            setBuyMaxLc(fmt.formatBigInt(upgrade.calculateMaxBuy() * 100));
+            setBuyMax(upgrade.calculateMaxBuy() !== 0);
+        });
+
+        activeTab.subscribe(() => {
+            if (upgrade.isMaxLvl()) {
+                setButton(
+                    <button className="kbc-button button" disabled>
+                        MAX
+                    </button>
+                )
+            }
         });
     }, []);
+
+    const handleMaxBuy = () => {
+        if (upgrade.calculateMaxBuy() === 0) {
+            return false;
+        }
+
+        upgrade.buyMax();
+        return true;
+    }
 
     const [button, setButton] = useState(
         <button className="kbc-button button" disabled={!upgrade.canBuyUpgrade()} onClick={upgrade.handleUpgrade}>
@@ -71,6 +95,9 @@ function UpgradeComponent({ upgrade }) {
             {<p>{upgrade.isMaxLvl()} {lcGenerationNext}LC/S</p>}
             </p></div>
             <>{button}</>
+            <button className="kbc-button button" disabled={!buyMax} onClick={handleMaxBuy}>
+                Buy Max: {buyMaxLc}
+            </button>
         </div>
     );
 }

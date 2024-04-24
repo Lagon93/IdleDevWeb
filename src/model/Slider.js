@@ -16,12 +16,17 @@ class SliderList {
 
     sliders = [];
     subscribers = [];
+    canAddSlider = true;
 
     constructor() {
         this.sliders = [];
     }
 
      addSlider(upgrade, image) {
+        if (!this.canAddSlider) {
+            return false;
+        }
+
         const slider = new Slider(upgrade, image);
 
         if (this.sliders.length > 2) {
@@ -30,9 +35,14 @@ class SliderList {
 
         this.sliders.push(slider);
 
-        console.log(this.sliders)
+        this.notifySubscribers();
 
-        this.notifySubscribers()
+        this.canAddSlider = false;
+        setTimeout(() => {
+            this.canAddSlider = true;
+        }, 500);
+
+        return true;
     }
 
     removeSlider(slider)  {

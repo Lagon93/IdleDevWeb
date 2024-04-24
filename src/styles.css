@@ -15,7 +15,12 @@
   animation: slideIn 0.5s ease-out;
 }
 
+
 @keyframes slideIn {
+.hidden {
+  display: none;
+}
+
   0% {
     transform: translateY(-100%);
     opacity: 0;

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import NumberFormatter from '../model/NumberFormatter';
 import lc from "../model/LC";
 
-function BoostComponent({ boost }) {
+function BoostComponent({ boost, jugador, activeTab }) {
     const ftm = new NumberFormatter();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ function BoostComponent({ boost }) {
             }
         });
 
-        lc.subscribe(() => {
+        jugador.lc.subscribe(() => {
             if (!boost.canBuyBoost()) {
                 if (!boost.active) {
                     setButton(
@@ -33,6 +33,17 @@ function BoostComponent({ boost }) {
                 )
             }
         });
+
+        activeTab.subscribe(() => {
+            if (boost.active) {
+                setButton(
+                    <button className="kbc-button button" disabled>
+                        Active
+                    </button>
+                )
+            }
+        });
+
     }, []);
 
     const onClick = () => {
@@ -54,10 +65,9 @@ function BoostComponent({ boost }) {
     };
 
     const [button, setButton] = useState(
-        <button className="kbc-button button" disabled={!boost.canBuyUpgrade} onClick={onClick}>
+        <button className="kbc-button button" disabled={!boost.canBuyBoost()} onClick={onClick}>
             Buy: {ftm.formatBigInt(boost.price * 100)} LC
-        </button>
-    );
+        </button>);
 
     return (
         <div className="upgrade">

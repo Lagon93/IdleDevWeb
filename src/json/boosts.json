@@ -2,12 +2,14 @@
   "boosters" : [
     {
       "id": "HTML Bootcamp",
+      "logo": "htmlboost.png",
       "technology" : "HTML",
       "multiplier" : 1.5,
       "price" : 1000
     },
     {
       "id" : "CSS Bootcamp",
+      "logo": "htmlboost.png",
       "technology" : "CSS",
       "multiplier" : 1.5,
       "price" : 1000

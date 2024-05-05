@@ -4,9 +4,9 @@
   background-color:#24292E;
   background-repeat: no-repeat;
   background-size: 100%;
-  margin: 0; /* Elimina el margen predeterminado del body */
-  padding: 0; /* Elimina el padding predeterminado del body */
-  height: 100%; /* Establece la altura del body al 100% del viewport height */
+  margin: 0; 
+  padding: 0; 
+  height: 100%; 
  }
 
 .slider {
@@ -17,9 +17,6 @@
 
 
 @keyframes slideIn {
-.hidden {
-  display: none;
-}
 
   0% {
     transform: translateY(-100%);
@@ -29,6 +26,9 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+.hidden {
+  display: none;
 }
 
 .button {
@@ -46,31 +46,244 @@
     justify-content: space-between;
     font-family: 'Press Start 2P';
     color: #fff;
-      /* Define el fondo como un degradado lineal */
   }
   
   .stats_Column,
-  .tabs-container, 
   .slider-container{
-   /* Ambos divs ocupan el mismo espacio */
     margin:  2vw;
-    flex:1;
- 
+    flex:auto;
   }
+  .tabs-container{
+  flex:initial;
+  margin-right: 2vw;
+  width:25%;
+}
 
+.logo-and-title {
+  display: flex;
+  align-items: center;
+}
+.upgrade, .boost{
+  display: flex;
+  background-color: #303841;
+  border-color: #ddd;
+  border-style: solid;
+  border-radius: 1rem;
+  padding: 1rem;
+  align-items: center;
+  margin-bottom: 0.3rem; 
+}
+
+.boost{
+display:flex;
+margin-top: 0.5rem;
+z-index:1
+}
+.boostsListActive {
+  display: flex;
+}
+
+
+.logosBoost{
+  width:4vh;
+  filter: drop-shadow( 5px 5px 10px #000 );
+  image-rendering: pixelated;
+}
+
+.BoostText{
+  font-size:10px;
+  align-items: center;
+  display: inline-table;
+}
+
+.UpgradeText {
+  font-size:10px;
+  align-items: center;
+  display: inline-table;
+}
+
+.pixel-corners,
+.pixel-corners--wrapper {
+  clip-path: polygon(0px calc(100% - 20px),
+    4px calc(100% - 20px),
+    4px calc(100% - 12px),
+    8px calc(100% - 12px),
+    8px calc(100% - 8px),
+    12px calc(100% - 8px),
+    12px calc(100% - 4px),
+    20px calc(100% - 4px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 4px) 20px,
+    calc(100% - 4px) 12px,
+    calc(100% - 8px) 12px,
+    calc(100% - 8px) 8px,
+    calc(100% - 12px) 8px,
+    calc(100% - 12px) 4px,
+    calc(100% - 20px) 4px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 4px,
+    12px 4px,
+    12px 8px,
+    8px 8px,
+    8px 12px,
+    4px 12px,
+    4px 20px,
+    0px 20px);
+  position: relative;
+}
+.pixel-corners {
+  border: 4px solid transparent;
+}
+.pixel-corners--wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+.pixel-corners--wrapper .pixel-corners {
+  display: block;
+  clip-path: polygon(4px 20px,
+    8px 20px,
+    8px 12px,
+    12px 12px,
+    12px 8px,
+    20px 8px,
+    20px 4px,
+    calc(100% - 20px) 4px,
+    calc(100% - 20px) 8px,
+    calc(100% - 12px) 8px,
+    calc(100% - 12px) 12px,
+    calc(100% - 8px) 12px,
+    calc(100% - 8px) 20px,
+    calc(100% - 4px) 20px,
+    calc(100% - 4px) calc(100% - 20px),
+    calc(100% - 8px) calc(100% - 20px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 20px) calc(100% - 8px),
+    calc(100% - 20px) calc(100% - 4px),
+    20px calc(100% - 4px),
+    20px calc(100% - 8px),
+    12px calc(100% - 8px),
+    12px calc(100% - 12px),
+    8px calc(100% - 12px),
+    8px calc(100% - 20px),
+    4px calc(100% - 20px));
+}
+.pixel-corners::after,
+.pixel-corners--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(0px calc(100% - 20px),
+    4px calc(100% - 20px),
+    4px calc(100% - 12px),
+    8px calc(100% - 12px),
+    8px calc(100% - 8px),
+    12px calc(100% - 8px),
+    12px calc(100% - 4px),
+    20px calc(100% - 4px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 4px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 12px),
+    calc(100% - 4px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 4px) 20px,
+    calc(100% - 4px) 12px,
+    calc(100% - 8px) 12px,
+    calc(100% - 8px) 8px,
+    calc(100% - 12px) 8px,
+    calc(100% - 12px) 4px,
+    calc(100% - 20px) 4px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 4px,
+    12px 4px,
+    12px 8px,
+    8px 8px,
+    8px 12px,
+    4px 12px,
+    4px 20px,
+    0px 20px,
+    0px 50%,
+    4px 50%,
+    4px 20px,
+    8px 20px,
+    8px 12px,
+    12px 12px,
+    12px 8px,
+    20px 8px,
+    20px 4px,
+    calc(100% - 20px) 4px,
+    calc(100% - 20px) 8px,
+    calc(100% - 12px) 8px,
+    calc(100% - 12px) 12px,
+    calc(100% - 8px) 12px,
+    calc(100% - 8px) 20px,
+    calc(100% - 4px) 20px,
+    calc(100% - 4px) calc(100% - 20px),
+    calc(100% - 8px) calc(100% - 20px),
+    calc(100% - 8px) calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 8px),
+    calc(100% - 20px) calc(100% - 8px),
+    calc(100% - 20px) calc(100% - 4px),
+    20px calc(100% - 4px),
+    20px calc(100% - 8px),
+    12px calc(100% - 8px),
+    12px calc(100% - 12px),
+    8px calc(100% - 12px),
+    8px calc(100% - 20px),
+    4px calc(100% - 20px),
+    4px 50%,
+    0px 50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #afafaf;
+  display: block;
+  pointer-events: none;
+}
+.pixel-corners::after {
+  margin: -4px;
+}
+
+.ButtonsUpgrade{
+  display:flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.slider{
+  background-color: #3a6188;
+}
   .stats_Column{
     color: #9392F0;
   }
 
-  .tabs-container{
-    margin-right: 2vw;
-  }
+
   .numbers{
     color: #fff;
     font-size: 20px;
   }
 
-  
+
   
  .logos{
   width:3vh;
@@ -79,15 +292,6 @@
   image-rendering: pixelated;
  }
 
- .logo-and-title {
-  display: flex;
-  align-items: center;
-}
-
-.logo-and-title {
-    display: flex;
-    align-items: center;
-}
 
 .navbar {
   display: flex;
@@ -120,6 +324,7 @@
   font-size: 24px;
   cursor: pointer;
   padding: 10px;
+  margin-right: 8rem;
 }
 
 .menu-items {
@@ -159,8 +364,6 @@ input[type="checkbox"]:checked ~ .menu-items {
 .tabs li {
   margin-right: 20px;
   padding: 10px 20px;
-  user-select: none;
-  
   cursor: pointer;
   
 }
@@ -170,23 +373,17 @@ input[type="checkbox"]:checked ~ .menu-items {
 }
 
 .active {
-  background-color: #525252;
-  border-bottom: 2px solid #007bff;
   border: none;
   border-radius: 4px 4px 0px 0px;
-  user-select: none;
+
 }
 
 .active span {
   border: none;
-  
+  background-color: #525252;
 }
 
-.UpgradeText {
-  font-size:10px;
-  align-items: center;
-  display: inline-table;
-}
+
 
 button.kbc-button{
   margin-left: 2vw;
@@ -225,4 +422,12 @@ button.kbc-button{
   100% {
       top: 100%; /* Termina fuera del contenedor abajo */
   }
+}
+
+
+.tabs li:not(:last-child)::after {
+  content: '/';
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left:3rem;
 }

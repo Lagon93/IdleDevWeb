@@ -81,7 +81,8 @@ function UpgradeComponent({ upgrade, jugador, activeTab }) {
         </button>);
 
     return (
-        <div className="upgrade">
+        <div className="upgrade pixel-corners">
+            <div className="UpgradeCaja">
             <div className="logo-and-title">
                 <img className="logos" src={`img/${upgrade.logo}`} alt="Code Logo"/>
                 <h2>{upgrade.id}</h2>
@@ -93,11 +94,11 @@ function UpgradeComponent({ upgrade, jugador, activeTab }) {
             <p>Upgrade:
             {/*{upgrade.isMaxLvl() ? <p></p> : <p>{nextUpgradeName}</p>}*/}
             {<p>{upgrade.isMaxLvl()} {lcGenerationNext}LC/S</p>}
-            </p></div>
-            <>{button}</>
+            </p></div></div>
+            <div className="ButtonsUpgrade">{button}
             <button className="kbc-button button" disabled={!buyMax} onClick={handleMaxBuy}>
                 Buy Max: {buyMaxLc}
-            </button>
+            </button></div>
         </div>
     );
 }

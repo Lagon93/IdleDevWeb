@@ -2,6 +2,7 @@ import lc from "./LC";
 
 class Boosts {
     id;
+    logo="";
     upgrade;
     lc;
     multiplier;
@@ -11,8 +12,9 @@ class Boosts {
 
     baseData;
 
-    constructor(lc, id, upgrade, multiplier, price) {
+    constructor(lc, id, logo, upgrade, multiplier, price) {
         this.id = id;
+        this.logo= logo
         this.upgrade = upgrade;
         this.lc = lc;
         this.multiplier = multiplier;
@@ -22,6 +24,7 @@ class Boosts {
 
         this.baseData = {
             id: id,
+            logo: logo,
             upgrade: upgrade,
             multiplier: multiplier,
             price: price,

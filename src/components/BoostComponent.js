@@ -70,12 +70,15 @@ function BoostComponent({ boost, jugador, activeTab }) {
         </button>);
 
     return (
-        <div className="upgrade">
+        <><div className="boost pixel-corners">
+            <img className="logosBoost" src={`img/${boost.logo}`} alt="boost Logo"/>
+       {/* <><div className="logo-and-title">
             <h2>{boost.id}</h2>
-            <p>{boost.upgrade.name}</p>
-            <p>Multiplier: {boost.multiplier}x</p>
-            <>{button}</>
-        </div>
+            </div><div className="BoostText">
+                    <p>{boost.upgrade.name}</p>
+                    <p>Multiplier: {boost.multiplier}x</p></div></>
+            <>{button}</>*/}
+    </div></> 
 
     );
 }

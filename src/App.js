@@ -13,6 +13,7 @@ import ActiveTab from "./model/ActiveTab";
 
 const jugador = new Jugador();
 const activeTab = new ActiveTab("Codigos");
+const isActive = true;
 
 function App() {
     const [activeTabValue, setActiveTabValue] = useState(activeTab.activeTab);
@@ -45,29 +46,28 @@ function App() {
           <div className="stats_Column">
               <Stats onProgramHTML={handleProgramHTML} jugador={jugador} />
           </div>
-                 {/* Slider de imágenes
+                 {/* Slider de imágenes */
 
                     <SliderComponent></SliderComponent>
 
-                 */}
+                 }
 
           <div className="tabs-container">
         <ul className="tabs">
-          <li className={activeTabValue === 'Codigos' ? 'active' : ''}>
-          <span onClick={() => handleTabChange("Codigos")}>Codigos</span>
+          <li className={activeTabValue === 'Codigos' ? 'active' : ''}onClick={() => handleTabChange("Codigos")}>
+          <span>Codigos</span>
           </li>
-          <li><span>/</span></li>
-          <li className={activeTabValue === 'Cursos' ? 'active' : ''}>
-          <span onClick={() => handleTabChange("Cursos")}>Cursos</span>
+          <li className={activeTabValue === 'Cursos' ? 'active' : ''}onClick={() => handleTabChange("Cursos")}>
+          <span>Cursos</span>
           </li>
         </ul>
           <div className="tab-content">
-              <div className={`upgradesList ${activeTabValue === 'Codigos' ? '' : 'hidden'}`}>
+              <div className={activeTabValue === 'Codigos' ? 'active' : 'hidden'}>
                   {jugador.upgrades.map((upgrade) => (
                       <UpgradeComponent key={upgrade.id} upgrade={upgrade} jugador={jugador} activeTab={activeTab}/>
                   ))}
               </div>
-              <div className={`boostsList ${activeTabValue === 'Cursos' ? '' : 'hidden'}`}>
+              <div className={`boostsList ${activeTabValue === 'Cursos' && isActive ? 'boostsListActive' : 'hidden'}`}>
                   {jugador.boosts.map((boost) => (
                       <BoostComponent key={boost.id} boost={boost} jugador={jugador} activeTab={activeTab}/>
                   ))}

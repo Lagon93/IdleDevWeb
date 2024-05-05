@@ -30,7 +30,7 @@ class Jugador {
         return boostsJson.boosters.map((boost) => {
             // get the upgrade that the boost is related to
             let upgrade = this.upgrades.find((upgrade) => upgrade.id === boost.technology);
-            return new Boosts(this.lc, boost.id, upgrade, boost.multiplier, boost.price);
+            return new Boosts(this.lc, boost.id, boost.logo, upgrade, boost.multiplier, boost.price);
         });
     }
 

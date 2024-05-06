@@ -26,6 +26,7 @@ function App() {
         setActiveTabValue(tabName);
         activeTab.setActiveTab(tabName);
     };
+
     return (
       <div className="container">
           <nav className="navbar">

@@ -4,8 +4,11 @@ import lc from "../model/LC";
 
 function BoostComponent({ boost, jugador, activeTab }) {
     const ftm = new NumberFormatter();
+    const [canBuy, setCanBuy] = useState(boost.canBuyBoost());
+    const [active, setActive] = useState(boost.active);
 
     useEffect(() => {
+        /*
         boost.subscribe(() => {
             if (boost.active) {
                 setButton(
@@ -43,10 +46,25 @@ function BoostComponent({ boost, jugador, activeTab }) {
                 )
             }
         });
+         */
+
+        boost.subscribe(() => {
+            setActive(boost.active);
+        });
+
+        jugador.lc.subscribe(() => {
+            setCanBuy(boost.canBuyBoost());
+        });
+
+        activeTab.subscribe(() => {
+            setCanBuy(boost.canBuyBoost());
+            setActive(boost.active)
+        });
 
     }, []);
 
     const onClick = () => {
+        /*
         if (!boost.buyBoost()) {
             setButton(
                 <button className="kbc-button button" disabled>
@@ -62,24 +80,30 @@ function BoostComponent({ boost, jugador, activeTab }) {
                 );
             }, 3000);
         }
+
+         */
     };
 
+    /*
     const [button, setButton] = useState(
         <button className="kbc-button button" disabled={!boost.canBuyBoost()} onClick={onClick}>
             Buy: {ftm.formatBigInt(boost.price * 100)} LC
         </button>);
+     */
 
     return (
-        <><div className="boost pixel-corners">
-            <img className="logosBoost" src={`img/${boost.logo}`} alt="boost Logo"/>
-       {/* <><div className="logo-and-title">
-            <h2>{boost.id}</h2>
-            </div><div className="BoostText">
-                    <p>{boost.upgrade.name}</p>
-                    <p>Multiplier: {boost.multiplier}x</p></div></>
-            <>{button}</>*/}
-    </div></> 
-
+        !active && (
+            <div className={`boost pixel-corners ${canBuy ? 'boost-enabled' : 'boost-disabled'}`}
+                 onClick={() => canBuy && boost.buyBoost()}>
+                <img className="logosBoost" src={`img/${boost.logo}`} alt="boost Logo"/>
+                {/* <><div className="logo-and-title">
+                <h2>{boost.id}</h2>
+                </div><div className="BoostText">
+                        <p>{boost.upgrade.name}</p>
+                        <p>Multiplier: {boost.multiplier}x</p></div></>
+                <>{button}</>*/}
+            </div>
+        )
     );
 }
 

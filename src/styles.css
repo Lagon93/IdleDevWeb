@@ -79,6 +79,16 @@ display:flex;
 margin-top: 0.5rem;
 z-index:1
 }
+
+.boost-enabled {
+  cursor: pointer;
+  background-color: white;
+}
+
+.boost-disabled {
+  background-color: grey;
+}
+
 .boostsListActive {
   display: flex;
 }

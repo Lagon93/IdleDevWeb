@@ -290,6 +290,7 @@ z-index:1
 
   .numbers{
     color: #fff;
+    -webkit-text-stroke: #9392F0 0.04rem;
     font-size: 20px;
   }
 
@@ -368,6 +369,7 @@ input[type="checkbox"]:checked ~ .menu-items {
   margin: 0;
   padding: 0;
   border-bottom: 2px solid #ddd;
+  cursor: pointer;
   
 }
 
@@ -380,6 +382,7 @@ input[type="checkbox"]:checked ~ .menu-items {
 
 .tabs li:first-child {
   margin-left: 20px;
+  cursor: pointer;
 }
 
 .active {
